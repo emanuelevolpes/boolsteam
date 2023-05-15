@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-         @vite('resources/js/app.js')
-    </head>
-    <body>
-        <div class="container">
-            <h1>Template Classe 89</h1>
-            <img src="{{ Vite::asset('resources/img/pluto.webp') }}" alt="" srcset="">
-        </div>
+@extends('layouts.app')
 
-    </body>
-</html>
+@section('page.title')
+Home Page
+@endsection
+
+@section('page.main')
+    <div class="container">
+        <h1 class="text-center">Welcome to Boolsteam</h1>
+        <h3 class="text-center">Admin section</h3>
+        <a href="{{route('games.index')}}">Games list</a>
+    </div>
+@endsection
