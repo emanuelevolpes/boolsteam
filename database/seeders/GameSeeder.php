@@ -45,7 +45,6 @@ class GameSeeder extends Seeder
         $new_game->minimum_cpu = $faker->numberBetween(4,32); // !! CHECK !! Genera un numero random tra 4 e 32 inteso come il numero di core della cpu
         $new_game->space_required = $faker->randomFloat(2, 1, 999); // Genera un valore con due decimali compresto tra 2 e 999
 
-        dd($new_game);
         $new_game->save();
     }
 }
