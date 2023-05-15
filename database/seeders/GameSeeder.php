@@ -32,7 +32,7 @@ class GameSeeder extends Seeder
         
         
         //COMMERCIAL 
-        $new_game->region = $faker->word(); //Generate a string containing random single word.
+        $new_game->region = $faker->state(); //Generate a string containing random state.
         $new_game->sales = $faker->randomNumber(6, true) ; //Generate a random number of 6 digits
         $new_game->price = $faker->randomFloat(2)   ; //Generates a random float 
         $new_game->score = $faker->randomFloat(3)  ; //Generates a random float
