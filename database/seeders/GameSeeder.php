@@ -29,7 +29,27 @@ class GameSeeder extends Seeder
         $new_game->genres = Arr::join($faker->randomElements(['Fantasy', 'MMO', 'MOBA', 'RPG', 'Action', 'FPS' , 'Shooter', 'Adventure'], 2), ', '); // Genera una stringa di 2 generi separati dalla virgola partendo da un array di partenza 
         $new_game->platform = Arr::join($faker->randomElements(['PC', 'PS4', 'XBOX', 'PS5', 'Nintendo Switch'], $faker->numberBetween(1,5)), ', '); // Genera una stringa da un array lunga un numero random tra 1 e 5
         $new_game->year = $faker->date(); // Data in formato  (y-m-d)
-        // -------
+        
+        
+        //COMMERCIAL 
+        $new_game->region = $faker->word(); //Generate a string containing random single word.
+        $new_game->sales = $faker->randomNumber(6, true) ; //Generate a random number of 6 digits
+        $new_game->price = $faker->randomFloat(2)   ; //Generates a random float 
+        $new_game->score = $faker->randomFloat(3)  ; //Generates a random float
+        $new_game->is_available = $faker->boolean()   ;
+        $new_game->downloads = $faker-> numberBetween(0, 65535)  ;//Generate a random number between 0 and 65535
+
+        //PEGI
+
+        $new_game->violence = $faker->boolean();
+        $new_game->bad_language = $faker->boolean(); 
+        $new_game->fear = $faker->boolean(); 
+        $new_game->gambling = $faker->boolean(); 
+        $new_game->sex = $faker->boolean(); 
+        $new_game->drugs = $faker->boolean();
+        $new_game->discriminations = $faker->boolean();
+
+
         // TAGS
         $new_game->single_player = $faker->boolean();
         $new_game->multiplayer = $faker->boolean(); 
