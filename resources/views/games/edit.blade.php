@@ -110,7 +110,7 @@ Add new game
             </div>
             {{-- available --}}
             <div class="mt-3">
-                <input type="checkbox" name="available" id="available" class="form-check-input @error('available') is-invalid @enderror" value="{{ $game->is_available }}" {{ ($game->is_available == 1 ? ' checked' : '') }}>
+                <input type="checkbox" name="available" id="available" class="form-check-input @error('available') is-invalid @enderror" {{ ($game->is_available == 1 ? ' checked' : '') }}>
                 <label for="available" class="form-check-label">Available</label> 
                 @error('available')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -126,7 +126,7 @@ Add new game
             </div>
             {{-- violence --}}
             <div class="mt-3">
-                <input type="checkbox" name="violence" id="violence" class="form-check-input @error('violence') is-invalid @enderror" value="on" {{ old('fear') == 'on' ? 'checked' : '' }}>
+                <input type="checkbox" name="violence" id="violence" class="form-check-input @error('violence') is-invalid @enderror" {{ ($game->violence == 1 ? ' checked' : '') }}>
                 <label for="violence" class="form-check-label">Violence</label>    
                 @error('violence')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -134,7 +134,7 @@ Add new game
             </div>
             {{-- bad language --}}
             <div class="mt-3">
-                <input type="checkbox" name="bad_language" id="bad_language" class="form-check-input @error('bad_language') is-invalid @enderror" checked="{{ old('bad_language', $game->bad_language) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="bad_language" id="bad_language" class="form-check-input @error('bad_language') is-invalid @enderror" {{ ($game->bad_language == 1 ? ' checked' : '') }}">
                 <label for="bad_language" class="form-check-label">Bad Language</label>    
                 @error('bad_language')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -142,7 +142,7 @@ Add new game
             </div>
             {{-- fear --}}
             <div class="mt-3">
-                <input type="checkbox" name="fear" id="fear" class="form-check-input @error('fear') is-invalid @enderror" value="on" {{ old('fear') == 'on' ? 'checked' : '' }}>
+                <input type="checkbox" name="fear" id="fear" class="form-check-input @error('fear') is-invalid @enderror" {{ ($game->fear == 1 ? ' checked' : '') }}>
                 <label for="fear" class="form-check-label">Fear</label>    
                 @error('fear')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -150,7 +150,7 @@ Add new game
             </div>
             {{-- gambling --}}
             <div class="mt-3">
-                <input type="checkbox" name="gambling" id="gambling" class="form-check-input @error('gambling') is-invalid @enderror" checked="{{ old('gambling', $game->gambling) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="gambling" id="gambling" class="form-check-input @error('gambling') is-invalid @enderror" {{ ($game->gambling == 1 ? ' checked' : '') }}>
                 <label for="gambling" class="form-check-label">Gambling</label>
                 @error('gambling')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -158,7 +158,7 @@ Add new game
             </div>
             {{-- sex --}}
             <div class="mt-3">
-                <input type="checkbox" name="sex" id="sex" class="form-check-input @error('sex') is-invalid @enderror" checked="{{ old('sex', $game->sex) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="sex" id="sex" class="form-check-input @error('sex') is-invalid @enderror" {{ ($game->sex == 1 ? ' checked' : '') }}>
                 <label for="sex" class="form-check-label">Sex</label>    
                 @error('sex')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -166,7 +166,7 @@ Add new game
             </div>
             {{-- drugs --}}
             <div class="mt-3">
-                <input type="checkbox" name="drugs" id="drugs" class="form-check-input @error('drugs') is-invalid @enderror" checked="{{ old('drugs', $game->drugs) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="drugs" id="drugs" class="form-check-input @error('drugs') is-invalid @enderror" {{ ($game->drugs == 1 ? ' checked' : '') }}>
                 <label for="drugs" class="form-check-label">Drugs</label>  
                 @error('drugs')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -174,7 +174,7 @@ Add new game
             </div>
             {{-- discriminations --}}
             <div class="mt-3">
-                <input type="checkbox" name="discriminations" id="discriminations" class="form-check-input @error('discriminations') is-invalid @enderror" checked="{{ old('discriminations', $game->discriminations) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="discriminations" id="discriminations" class="form-check-input @error('discriminations') is-invalid @enderror" {{ ($game->discriminations == 1 ? ' checked' : '') }}>
                 <label for="discriminations" class="form-check-label">Discriminations</label>  
                 @error('discriminations')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -182,7 +182,7 @@ Add new game
             </div>
             {{-- Single player --}}
             <div class="mt-3">
-                <input type="checkbox" name="single_player" id="single_player" class="form-check-input @error('single_player') is-invalid @enderror" checked="{{ old('single_player', $game->single_player) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="single_player" id="single_player" class="form-check-input @error('single_player') is-invalid @enderror" {{ ($game->single_player == 1 ? ' checked' : '') }}>
                 <label for="single_player" class="form-check-label">Single Player</label>  
                 @error('single_player')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -190,7 +190,7 @@ Add new game
             </div>
             {{-- multiplayer --}}
             <div class="mt-3">
-                <input type="checkbox" name="multiplayer" id="multiplayer" class="form-check-input @error('multiplayer') is-invalid @enderror" checked="{{ old('multiplayer', $game->multiplayer) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="multiplayer" id="multiplayer" class="form-check-input @error('multiplayer') is-invalid @enderror" {{ ($game->multiplayer == 1 ? ' checked' : '') }}>
                 <label for="multiplayer" class="form-check-label">Multiplayer</label>
                 @error('multiplayer')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -198,7 +198,7 @@ Add new game
             </div>
             {{-- Online pvp --}}
             <div class="mt-3">
-                <input type="checkbox" name="online_pvp" id="online_pvp" class="form-check-input @error('online_pvp') is-invalid @enderror" checked="{{ old('online_pvp', $game->online_pvp) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="online_pvp" id="online_pvp" class="form-check-input @error('online_pvp') is-invalid @enderror" {{ ($game->online_pvp == 1 ? ' checked' : '') }}>
                 <label for="online_pvp" class="form-check-label">Online PvP</label>
                 @error('online_pvp')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -206,7 +206,7 @@ Add new game
             </div>
             {{-- Online Coop --}}
             <div class="mt-3">
-                <input type="checkbox" name="online_coop" id="online_coop" class="form-check-input @error('online_coop') is-invalid @enderror" checked="{{ old('online_coop', $game->availonline_coopable) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="online_coop" id="online_coop" class="form-check-input @error('online_coop') is-invalid @enderror" {{ ($game->online_coop == 1 ? ' checked' : '') }}>
                 <label for="online_coop" class="form-check-label">Online Coop</label>
                 @error('online_coop')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -214,7 +214,7 @@ Add new game
             </div>
             {{-- Supported Languages --}}
             <div class="mt-3">
-                <input type="checkbox" name="supported_languages" id="supported_languages" class="form-check-input @error('supported_languages') is-invalid @enderror" value="{{ old('supported_languages', $game->supported_languages) }}">
+                <input type="checkbox" name="supported_languages" id="supported_languages" class="form-check-input @error('supported_languages') is-invalid @enderror" {{ ($game->supported_languages == 1 ? ' checked' : '') }}>
                 <label for="supported_languages" class="form-check-label">Supported Languages</label> 
                 @error('supported_languages')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -222,7 +222,7 @@ Add new game
             </div>
             {{-- DLC --}}
             <div class="mt-3">
-                <input type="checkbox" name="is_dlc" id="is_dlc" class="form-check-input @error('is_dlc') is-invalid @enderror" checked="{{ old('is_dlc', $game->is_dlc) === 1 ? 'true' : null }}">
+                <input type="checkbox" name="is_dlc" id="is_dlc" class="form-check-input @error('is_dlc') is-invalid @enderror" {{ ($game->is_dlc == 1 ? ' checked' : '') }}>
                 <label for="is_dlc" class="form-check-label">DLC</label> 
                 @error('is_dlc')
                     <div class="alert alert-danger">{{ $message }} </div>
