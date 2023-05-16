@@ -110,8 +110,7 @@ Add new game
             </div>
             {{-- available --}}
             <div class="mt-3">
-                @dd($game->is_available)
-                <input type="checkbox" name="available" id="available" class="form-check-input @error('available') is-invalid @enderror" value="{{ $game->is_available }}">
+                <input type="checkbox" name="available" id="available" class="form-check-input @error('available') is-invalid @enderror" value="{{ $game->is_available }}" {{ ($game->is_available == 1 ? ' checked' : '') }}>
                 <label for="available" class="form-check-label">Available</label> 
                 @error('available')
                     <div class="alert alert-danger">{{ $message }} </div>
