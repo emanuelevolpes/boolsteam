@@ -4,3 +4,22 @@
 @use "partials/variables";
 
 @import "~bootstrap/scss/bootstrap";
+
+img{
+    width: 18.75rem;
+    height: 25rem;
+    display: block;
+}
+.tags{
+    text-align: center;
+    border-radius: 5px;
+    border: .125rem solid black;
+    padding: .3125rem;
+}
+.pegi{
+    background-color:lightcoral;
+    
+}
+.typo{
+    background-color:lightgreen;
+}
