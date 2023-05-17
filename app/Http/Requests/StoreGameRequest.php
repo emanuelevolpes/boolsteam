@@ -24,7 +24,32 @@ class StoreGameRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            //MAIN
+            'title'=> 'required|string|max:100',
+            'image'=> 'nullable|url|ends_with:png,jpg,webp',
+            'description'=> 'nullable',
+            'publisher'=> 'required|string|max:100',
+            'developer'=> 'required|string|max:100',
+            'genres'=> 'required',
+            'platform'=> 'required',
+            'year'=> 'required|integer|digits:4|min:1975|max:'.date('Y'),
+
+            //COMMERCIAL
+            'region'=> 'required|string',
+            'sales'=> 'required|integer',
+            'price'=> 'required|numeric',
+            'score'=> 'required|numeric',
+            'downloads'=> 'required|integer',
+
+            //TAGS
+            'supported_languages'=> 'required|string|max:2|uppercase',
+
+            //REQUIREMENTS
+            'minimum_operating_system'=> 'required|string',
+            'minimum_memory_ram'=> 'required|integer',
+            'minimum_gpu'=> 'required|integer',
+            'minimum_cpu'=> 'required|integer',
+            'space_required'=> 'required|numeric',
         ];
     }
 }
