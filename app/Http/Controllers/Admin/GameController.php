@@ -41,6 +41,21 @@ class GameController extends Controller
     {
         $data = $request->all();
         $newGame = new Game();
+        //PEGI
+        $newGame->is_available = $request['is_available'] ? 1 : 0;
+        $newGame->violence = $request['violence'] ? 1 : 0;
+        $newGame->bad_language = $request['bad_language'] ? 1 : 0;
+        $newGame->fear = $request['fear'] ? 1 : 0;
+        $newGame->gambling = $request['gambling'] ? 1 : 0;
+        $newGame->sex = $request['sex'] ? 1 : 0;
+        $newGame->drugs = $request['drugs'] ? 1 : 0;
+        $newGame->discriminations = $request['discriminations'] ? 1 : 0;
+        //TAGS
+        $newGame->single_player = $request['single_player'] ? 1 : 0;
+        $newGame->multiplayer = $request['multiplayer'] ? 1 : 0;
+        $newGame->online_pvp = $request['online_pvp'] ? 1 : 0;
+        $newGame->online_coop = $request['online_coop'] ? 1 : 0;
+        $newGame->is_dlc = $request['is_dlc'] ? 1 : 0;
         $newGame->fill($data);
         $newGame->save();
 
@@ -55,7 +70,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('admin.games.show',compact('game'));
+        return view('admin.games.show', compact('game'));
     }
 
     /**
@@ -79,7 +94,22 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->all();
+        //PEGI
+        $game->is_available = $request['is_available'] ? 1 : 0;
+        $game->violence = $request['violence'] ? 1 : 0;
+        $game->bad_language = $request['bad_language'] ? 1 : 0;
         $game->fear = $request['fear'] ? 1 : 0;
+        $game->gambling = $request['gambling'] ? 1 : 0;
+        $game->sex = $request['sex'] ? 1 : 0;
+        $game->drugs = $request['drugs'] ? 1 : 0;
+        $game->discriminations = $request['discriminations'] ? 1 : 0;
+        //TAGS
+        $game->single_player = $request['single_player'] ? 1 : 0;
+        $game->multiplayer = $request['multiplayer'] ? 1 : 0;
+        $game->online_pvp = $request['online_pvp'] ? 1 : 0;
+        $game->online_coop = $request['online_coop'] ? 1 : 0;
+        $game->is_dlc = $request['is_dlc'] ? 1 : 0;
+
         $game->update($data);
     }
 
