@@ -41,6 +41,21 @@ class GameController extends Controller
     {
         $data = $request->all();
         $newGame = new Game();
+        //PEGI
+        $newGame->fear = $request['is_available'] ? 1 : 0;
+        $newGame->fear = $request['violence'] ? 1 : 0;
+        $newGame->fear = $request['bad_language'] ? 1 : 0;
+        $newGame->fear = $request['fear'] ? 1 : 0;
+        $newGame->fear = $request['gambling'] ? 1 : 0;
+        $newGame->fear = $request['sex'] ? 1 : 0;
+        $newGame->fear = $request['drugs'] ? 1 : 0;
+        $newGame->fear = $request['discriminations'] ? 1 : 0;
+        //TAGS
+        $newGame->fear = $request['single_player'] ? 1 : 0;
+        $newGame->fear = $request['multiplayer'] ? 1 : 0;
+        $newGame->fear = $request['online_pvp'] ? 1 : 0;
+        $newGame->fear = $request['online_coop'] ? 1 : 0;
+        $newGame->fear = $request['is_dlc'] ? 1 : 0;
         $newGame->fill($data);
         $newGame->save();
 
@@ -55,7 +70,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('admin.games.show',compact('game'));
+        return view('admin.games.show', compact('game'));
     }
 
     /**
@@ -79,7 +94,22 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->all();
+        //PEGI
+        $game->fear = $request['is_available'] ? 1 : 0;
+        $game->fear = $request['violence'] ? 1 : 0;
+        $game->fear = $request['bad_language'] ? 1 : 0;
         $game->fear = $request['fear'] ? 1 : 0;
+        $game->fear = $request['gambling'] ? 1 : 0;
+        $game->fear = $request['sex'] ? 1 : 0;
+        $game->fear = $request['drugs'] ? 1 : 0;
+        $game->fear = $request['discriminations'] ? 1 : 0;
+        //TAGS
+        $game->fear = $request['single_player'] ? 1 : 0;
+        $game->fear = $request['multiplayer'] ? 1 : 0;
+        $game->fear = $request['online_pvp'] ? 1 : 0;
+        $game->fear = $request['online_coop'] ? 1 : 0;
+        $game->fear = $request['is_dlc'] ? 1 : 0;
+
         $game->update($data);
     }
 
