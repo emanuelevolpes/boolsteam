@@ -42,7 +42,7 @@ class StoreGameRequest extends FormRequest
             'downloads'=> 'required|integer',
 
             //TAGS
-            'supported_languages'=> 'required|string|max:2|uppercase',
+            'supported_languages'=> 'required|string',
 
             //REQUIREMENTS
             'minimum_operating_system'=> 'required|string',
