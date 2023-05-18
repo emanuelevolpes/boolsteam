@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('developer', 100);
             $table->text('genres');
             $table->string('platform');
-            $table->dateTime('year');
+            $table->date('year');
 
             //COMMERCIAL
             $table->string('region');

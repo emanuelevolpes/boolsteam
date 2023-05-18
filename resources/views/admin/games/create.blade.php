@@ -212,8 +212,8 @@
             </div>
             {{-- Supported Languages --}}
             <div class="mt-3">
-                <input type="checkbox" name="supported_languages" id="supported_languages" class="form-check-input @error('supported_languages') is-invalid @enderror" value="1">
-                <label for="supported_languages" class="form-check-label">Supported Languages</label>
+                <input type="text" name="supported_languages" id="supported_languages" class="form-control @error('supported_languages') is-invalid @enderror">
+                <label for="supported_languages" class="form-label">Supported Languages</label>
                 @error('supported_languages')
                     <div class="alert alert-danger">{{ $message }} </div>
                 @enderror

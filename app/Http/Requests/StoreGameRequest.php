@@ -32,7 +32,7 @@ class StoreGameRequest extends FormRequest
             'developer'=> 'required|string|max:100',
             'genres'=> 'required',
             'platform'=> 'required',
-            'year'=> 'required|integer|digits:4|min:1975|max:'.date('Y'),
+            'year'=> 'required',
 
             //COMMERCIAL
             'region'=> 'required|string',

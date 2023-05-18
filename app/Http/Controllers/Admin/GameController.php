@@ -111,6 +111,8 @@ class GameController extends Controller
         $game->is_dlc = $request['is_dlc'] ? 1 : 0;
 
         $game->update($data);
+
+        return to_route('admin.games.index');
     }
 
     /**
