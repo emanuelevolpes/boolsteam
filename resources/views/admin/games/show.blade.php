@@ -6,7 +6,7 @@
 
 @section('page.main')
     <div class="container">
-        <a href="{{ route('games.index') }}" class="btn btn-primary">Comics list</a>
+        <a href="{{ route('admin.games.index') }}" class="btn btn-primary">Comics list</a>
         <div class="d-flex  gap-3 my-5">
             <div>
                 <img class="img-fluid" src="{{ $game->image }}" alt="{{ $game->title }}">

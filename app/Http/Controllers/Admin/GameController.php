@@ -28,7 +28,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        return view('admin.games.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class GameController extends Controller
         $newGame->fill($data);
         $newGame->save();
 
-        return to_route('games.index');
+        return to_route('admin.games.index');
     }
 
     /**
@@ -55,7 +55,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('games.show',compact('game'));
+        return view('admin.games.show',compact('game'));
     }
 
     /**
@@ -66,7 +66,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('games.edit', compact('game'));
+        return view('admin.games.edit', compact('game'));
     }
 
     /**
@@ -79,6 +79,7 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->all();
+        $game->fear = $request['fear'] ? 1 : 0;
         $game->update($data);
     }
 
@@ -91,6 +92,6 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         $game->delete();
-        return to_route('games.index');
+        return to_route('admin.games.index');
     }
 }
