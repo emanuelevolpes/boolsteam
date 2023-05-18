@@ -32,7 +32,7 @@
                                     class="btn btn-sm border-dark">Detail</a>
                                 <a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete{{ $game->id }}">
+                                    data-bs-target="#delete{{ $game->id }}" onclick="event.stopPropagation()">
                                     Delete
                                 </button>
                             </div>
