@@ -39,7 +39,7 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $newGame = new Game();
         //PEGI
         $newGame->is_available = $request['is_available'] ? 1 : 0;
@@ -93,7 +93,7 @@ class GameController extends Controller
      */
     public function update(UpdateGameRequest $request, Game $game)
     {
-        $data = $request->all();
+        $data = $request->validated();
         //PEGI
         $game->is_available = $request['is_available'] ? 1 : 0;
         $game->violence = $request['violence'] ? 1 : 0;
