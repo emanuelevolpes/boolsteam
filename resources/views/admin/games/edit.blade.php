@@ -110,7 +110,7 @@ Add new game
             </div>
             {{-- available --}}
             <div class="mt-3">
-                <input type="checkbox" name="is_available" id="is_available" class="form-check-input @error('available') is-invalid @enderror" value="true" {{ ($game->is_available == 1 ? ' checked' : '') }}>
+                <input type="checkbox" name="is_available" id="is_available" class="form-check-input @error('available') is-invalid @enderror" value="1" {{ ($game->is_available == 1 ? ' checked' : '') }}>
                 <label for="is_available" class="form-check-label">Available</label> 
                 @error('available')
                     <div class="alert alert-danger">{{ $message }} </div>
@@ -142,7 +142,7 @@ Add new game
             </div>
             {{-- fear --}}
             <div class="mt-3">
-                <input type="checkbox" name="fear" id="fear" class="form-check-input @error('fear') is-invalid @enderror" value="true" {{ ($game->fear == 1 ? ' checked' : '') }}>
+                <input type="checkbox" name="fear" id="fear" class="form-check-input @error('fear') is-invalid @enderror" value="1" {{ ($game->fear == 1 ? ' checked' : '') }}>
                 <label for="fear" class="form-check-label">Fear</label>    
                 @error('fear')
                     <div class="alert alert-danger">{{ $message }} </div>

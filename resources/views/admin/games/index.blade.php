@@ -6,6 +6,7 @@ Movies
 
 @section('page.main')
     <div class="container my-5">
+        <a href="{{ route('admin.games.create') }}" class="btn btn-sm btn-primary">Create new game</a>
         <table class="table table-hover align-middle">
             <thead>
                 <th scope="col">#</th>
@@ -29,6 +30,7 @@ Movies
                             <div class="d-flex gap-2">
                                 <a href="{{ route('admin.games.show', $game->id) }}" class="btn btn-sm border-dark">Detail</a>
                                 <a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('admin.games.destroy', $game->id) }}" class="btn btn-sm btn-danger">Delete</a>
                             </div>
                         </td>
                     </tr>
