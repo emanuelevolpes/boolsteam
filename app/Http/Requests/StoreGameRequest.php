@@ -49,7 +49,7 @@ class StoreGameRequest extends FormRequest
             'minimum_memory_ram'=> 'required|integer',
             'minimum_gpu'=> 'required|integer',
             'minimum_cpu'=> 'required|integer',
-            'space_required'=> 'required|numeric',
+            'space_required'=> 'required|numeric'
         ];
     }
 }
