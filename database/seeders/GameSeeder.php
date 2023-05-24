@@ -8,6 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Schema;
 
 class GameSeeder extends Seeder
 {
@@ -18,8 +19,9 @@ class GameSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-
+        Schema::disableForeignKeyConstraints();
         Game::truncate();
+        Schema::enableForeignKeyConstraints();
 
         for ($i = 0; $i < 50; $i++) {
             $new_game = new Game();

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePegiRequest;
 use App\Http\Requests\UpdatePegiRequest;
 use App\Models\Pegi;
@@ -15,7 +16,8 @@ class PegiController extends Controller
      */
     public function index()
     {
-        //
+        $pegis = Pegi::all();
+        return view('admin.pegis.index',compact('pegis'));
     }
 
     /**
