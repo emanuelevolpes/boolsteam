@@ -46,6 +46,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                             </li>
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.dashboard' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.games.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.games.index') }}">{{ __('Games') }}</a>
+                            </li>
+                            @endauth
                         </ul>
 
                         <!-- Right Side Of Navbar -->
