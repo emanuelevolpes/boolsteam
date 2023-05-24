@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-        $table->foreignId('developer_id')->nullable()->constrained()->after('id')->nullable()->nullOnDelete();
+        $table->foreignId('publisher_id')->nullable()->constrained()->after('id')->nullable()->nullOnDelete();
         });
     }
 
@@ -26,8 +26,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->dropForeign(['production_id']);
-            $table->dropColumn('production_id');
+            $table->dropForeign(['publisher_id']);
+            $table->dropColumn('publisher_id');
         });
     }
 };

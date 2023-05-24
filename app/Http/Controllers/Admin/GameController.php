@@ -64,8 +64,8 @@ class GameController extends Controller
         $newGame->is_dlc = $request['is_dlc'] ? 1 : 0;
 
 
-        if(isset($data['developer_id'])){
-            $newGame->developer_id = $data['developer_id'];
+        if(isset($data['publisher_id'])){
+            $newGame->publisher_id = $data['publisher_id'];
         }
 
         $newGame->fill($data);

@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Developer;
+use App\Models\Publisher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DeveloperSeeder extends Seeder
+class PublisherSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,9 @@ class DeveloperSeeder extends Seeder
     {
         for ($i = 0; $i < 50; $i++) {
 
-            $developer = new Developer();
-            $developer->name=fake()->company();
-            $developer-> save();
+            $publisher = new Publisher();
+            $publisher->name=fake()->company();
+            $publisher-> save();
         }
     }
 }

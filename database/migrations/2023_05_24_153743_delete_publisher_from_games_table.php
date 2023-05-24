@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-            //
+          $table->dropColumn('publisher');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->string('developer', 100);
+            $table->string('publisher', 100);
 
         });
     }
