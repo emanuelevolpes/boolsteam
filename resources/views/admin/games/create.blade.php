@@ -43,12 +43,15 @@
                 @enderror
             </div>
             {{-- developer --}}
+
             <div class="mt-3">
                 <label for="developer" class="form-label">Developer</label>
-                <input type="text" class="form-control @error('developer') is-invalid @enderror" id="developer" name="developer" value="{{ old('developer') }}">
-                @error('developer')
-                    <div class="alert alert-danger">{{ $message }} </div>
-                @enderror
+                <select class="form-select" name="developers_id" id="">
+                    <option value="">select Developer</option>
+                    @foreach ($developers as $developer )
+                        <option value="{{developer_id}}">{{$developer->name}}</option>
+                    @endforeach
+                </select>
             </div>
             {{-- genres --}}
             <div class="mt-3">
