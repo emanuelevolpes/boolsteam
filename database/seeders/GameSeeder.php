@@ -41,14 +41,14 @@ class GameSeeder extends Seeder
             $new_game->is_available = $faker->boolean();
             $new_game->downloads = $faker->numberBetween(0, 65535); //Generate a random number between 0 and 65535
 
-            //PEGI
-            $new_game->violence = $faker->boolean();
-            $new_game->bad_language = $faker->boolean();
-            $new_game->fear = $faker->boolean();
-            $new_game->gambling = $faker->boolean();
-            $new_game->sex = $faker->boolean();
-            $new_game->drugs = $faker->boolean();
-            $new_game->discriminations = $faker->boolean();
+            // //PEGI
+            // $new_game->violence = $faker->boolean();
+            // $new_game->bad_language = $faker->boolean();
+            // $new_game->fear = $faker->boolean();
+            // $new_game->gambling = $faker->boolean();
+            // $new_game->sex = $faker->boolean();
+            // $new_game->drugs = $faker->boolean();
+            // $new_game->discriminations = $faker->boolean();
 
             // TAGS
             $new_game->single_player = $faker->boolean();
