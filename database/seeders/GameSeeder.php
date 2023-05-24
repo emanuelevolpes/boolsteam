@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Developer;
 use App\Models\Game;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,16 +20,17 @@ class GameSeeder extends Seeder
     {
 
         Game::truncate();
-        
+
         for ($i = 0; $i < 50; $i++) {
             $new_game = new Game();
 
+            $developer = Developer::inRandomOrder()->first();
             // MAIN
             $new_game->title = $faker->sentence(5); // Genera una scritta di 5 parole
             $new_game->image = $faker->imageUrl(480, 640, 'games'); // URL immagine random con dimensioni 480x640
             $new_game->description = $faker->text(); // Genera un testo di 200 
             $new_game->publisher = $faker->sentence(3); // Genera una scritta di 3 parole
-            $new_game->developer = $faker->sentence($faker->randomDigitNot(0)); // Genera un scritta con un numero random di parole
+            $new_game->developer_id = $developer->id; // Genera un scritta con un numero random di parole
             $new_game->genres = Arr::join($faker->randomElements(['Fantasy', 'MMO', 'MOBA', 'RPG', 'Action', 'FPS', 'Shooter', 'Adventure'], 2), ', '); // Genera una stringa di 2 generi separati dalla virgola partendo da un array di partenza 
             $new_game->platform = Arr::join($faker->randomElements(['PC', 'PS4', 'XBOX', 'PS5', 'Nintendo Switch'], $faker->numberBetween(1, 5)), ', '); // Genera una stringa da un array lunga un numero random tra 1 e 5
             $new_game->year = $faker->date('Y-m-d'); // Data in formato  (Y-m-d)

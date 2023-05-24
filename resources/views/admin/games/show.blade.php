@@ -32,7 +32,7 @@
                     </li>
                     <li class="my-3">
                         <h5>Developer</h5>
-                         {{ $game->developer }}
+                        {{ $game->developer->name}}
                         </li>
                     <li class="my-3">
                         <h5>Genres</h5>

@@ -11,7 +11,7 @@
             <thead>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Publisher</th>
+                <th scope="col">Developer</th>
                 <th scope="col">Genres</th>
                 <th scope="col">Platform</th>
                 <th scope="col">Price €</th>
@@ -22,7 +22,7 @@
                     <tr onclick="window.location='{{ route('admin.games.show', $game->id) }}'" style="cursor: pointer">
                         <td>{{ $game->id }}</td>
                         <td>{{ $game->title }}</td>
-                        <td>{{ $game->publisher }}</td>
+                        <td>{{ $game->developer->name }}</td>
                         <td>{{ $game->genres }}</td>
                         <td>{{ $game->platform }}</td>
                         <td>{{ $game->price }}</td>
