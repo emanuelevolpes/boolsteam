@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->string('publisher', 100);
-            $table->string('developer', 100);
             $table->text('genres');
             $table->string('platform');
             $table->date('year');
