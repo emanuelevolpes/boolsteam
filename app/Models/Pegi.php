@@ -10,6 +10,6 @@ class Pegi extends Model
     use HasFactory;
 
     public function games(){
-        return $this->belongsToMany(Game::class);
+        return $this->belongsToMany(Game::class)->withTimestamps();
     }
 }
