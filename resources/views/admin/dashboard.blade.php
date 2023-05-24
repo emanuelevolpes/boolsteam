@@ -16,9 +16,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{ route('admin.games.index')}}" class="btn btn-sm btn-primary">Games</a>
                 </div>
                 
+            
             </div>
         </div>
     </div>
