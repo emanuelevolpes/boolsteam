@@ -1,0 +1,62 @@
+@extends('layouts.app')
+
+@section('page.title')
+    Developers
+@endsection
+
+@section('page.main')
+    <div class="container my-5">
+        <a href="{{ route('admin.developers.create') }}" class="btn btn-sm btn-primary">Add new developer</a>
+        <table class="table table-hover align-middle">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">slug</th>
+            </thead>
+            <tbody>
+                @foreach ($developers as $developer)
+                    <tr onclick="window.location='{{ route('admin.developers.show', $developer->id) }}'" style="cursor: pointer">
+                        <td>{{ $developer->id }}</td>
+                        <td>{{ $developer->name }}</td>
+                        <td>{{ $developer->slug }}</td>
+                        <td colspan="3">
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.developers.show', $developer->id) }}"
+                                    class="btn btn-sm border-dark">Detail</a>
+                                <a href="{{ route('admin.developers.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete{{ $developer->id }}" onclick="event.stopPropagation()">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="delete{{ $developer->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>DELETE PROJECT: {{ $developer->name }}</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{ route('admin.developers.destroy', $developer->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
