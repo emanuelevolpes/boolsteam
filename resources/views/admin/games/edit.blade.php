@@ -9,7 +9,7 @@ Add new game
         <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Comics list</a>
         <h1 class="text-center">Edit for {{ $game->title }}</h1>
         {{-- form --}}
-        <form action="{{ route ('admin.games.update', $game->id) }}" method="POST">
+        <form action="{{ route ('admin.games.update', $game->id) }}" method="POST" enctype="multipart/form-data>
         @csrf {{-- token for identification --}}
         @method('PATCH') {{-- real method instead of post --}}
             {{-- title --}}
@@ -22,12 +22,15 @@ Add new game
             </div>        
             {{-- image --}}
             <div class="mt-3">
+                <div class="preview">
+                    <img id="file-image-preview"  @if($game->image) src="{{ asset('storage/' . $game->image)}}" @endif>
+                </div>
                 <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image', $game->image) }}">
+                <input class="form-control @error('image') is-invalid @enderror"  type="file" id="image" name="image">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }} </div>
                 @enderror
-            </div>
+              </div>
             {{-- description --}}
             <div class="mt-3">
                 <label for="description" class="form-label">Description</label>
