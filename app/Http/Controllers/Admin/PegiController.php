@@ -58,7 +58,7 @@ class PegiController extends Controller
      */
     public function show(Pegi $pegi)
     {
-        
+        return view('admin.pegis.show', compact('pegi'));
     }
 
     /**
