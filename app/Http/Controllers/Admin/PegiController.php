@@ -96,6 +96,9 @@ class PegiController extends Controller
      */
     public function destroy(Pegi $pegi)
     {
-        //
+        $deletePegi = $pegi->id;
+        
+        $pegi->delete();
+        return redirect()->route('admin.pegis.index')->with('message', "Deleted pegi $deletePegi");
     }
 }

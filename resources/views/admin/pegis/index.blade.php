@@ -48,6 +48,7 @@
                             </div>
                         </td>
                     </tr>
+                    {{-- Modal for delete --}}
                     <div class="modal fade" id="delete{{ $pegi->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -61,7 +62,7 @@
                                     <div>DELETE PROJECT: {{ $pegi->name }}</div>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('admin.games.destroy', $pegi->id) }}" method="POST">
+                                    <form action="{{ route('admin.pegis.destroy', $pegi->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-sm btn-secondary"
@@ -72,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- -------- --}}
                 @endforeach
             </tbody>
         </table>
