@@ -8,6 +8,7 @@
     <div class="container my-5">
         <a href="{{ route('admin.pegis.create') }}" class="btn btn-sm btn-primary">Create new game</a>
         
+        {{-- Message for create and update PEGI --}}
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
                 <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
@@ -23,6 +24,7 @@
             </div>
         @endif
 
+        {{-- PEGI'S Table --}}
         <table class="table table-hover align-middle">
             <thead>
                 <th scope="col">#</th>
@@ -31,7 +33,9 @@
                 <th scope="col">Info</th>
             </thead>
             <tbody>
+                {{-- Cicle on list of pegis --}}
                 @foreach ($pegis as $pegi)
+                    {{-- table row --}}
                     <tr onclick="window.location='{{ route('admin.pegis.show', $pegi->id) }}'" style="cursor: pointer">
                         <td>{{ $pegi->id }}</td>
                         <td>{{ $pegi->name }}</td>
@@ -48,6 +52,8 @@
                             </div>
                         </td>
                     </tr>
+                    {{-- /table row --}}
+
                     {{-- Modal for delete --}}
                     <div class="modal fade" id="delete{{ $pegi->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
