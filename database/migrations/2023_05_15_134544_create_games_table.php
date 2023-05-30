@@ -33,14 +33,8 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->unsignedMediumInteger('downloads');
 
-
             //TAGS
-            $table->boolean('single_player');
-            $table->boolean('multiplayer');
-            $table->boolean('online_pvp');
-            $table->boolean('online_coop');
             $table->text('supported_languages');
-            $table->boolean('is_dlc');
 
             //REQUIREMENTS
             $table->string('minimum_operating_system');
