@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdatePegiRequest extends FormRequest
+class UpdateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +28,8 @@ class UpdatePegiRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                Rule::unique('pegis','name')->ignore($this->pegi),  
+                Rule::unique('tags','name')->ignore($this->tag),
             ]
-            
         ];
     }
 }
