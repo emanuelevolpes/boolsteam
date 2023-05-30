@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DeveloperSeeder::class,
             GameSeeder::class,
             PegiSeeder::class,
+            GenreSeeder::class,
         ]);
       
         // \App\Models\User::factory(10)->create();

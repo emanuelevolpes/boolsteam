@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page.title')
-    Movies
+    Games
 @endsection
 
 @section('page.main')
