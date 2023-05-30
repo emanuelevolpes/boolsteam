@@ -58,7 +58,7 @@ class PegiController extends Controller
      */
     public function show(Pegi $pegi)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +69,7 @@ class PegiController extends Controller
      */
     public function edit(Pegi $pegi)
     {
-        //
+        return view('admin.pegis.edit', compact('pegi'));
     }
 
     /**
@@ -81,7 +81,11 @@ class PegiController extends Controller
      */
     public function update(UpdatePegiRequest $request, Pegi $pegi)
     {
-        //
+        $data = $request->validated();
+
+        $pegi->slug = Str::slug($data['name']);
+        $pegi->update($data);
+        return redirect()->route('admin.pegis.index')->with('message', "Edit pegi $pegi->id success");
     }
 
     /**
