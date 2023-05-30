@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            DeveloperSeeder::class,
             GameSeeder::class,
             PegiSeeder::class,
-            DeveloperSeeder:class,
         ]);
       
         // \App\Models\User::factory(10)->create();

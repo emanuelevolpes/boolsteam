@@ -6,7 +6,7 @@ Add new game
 {{-- need to fix checkbox and date format --}}
 @section('page.main')
     <div class="container">
-        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Comics list</a>
+        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Games list</a>
         <h1 class="text-center">Edit for {{ $game->title }}</h1>
         {{-- form --}}
         <form action="{{ route ('admin.games.update', $game->id) }}" method="POST">
