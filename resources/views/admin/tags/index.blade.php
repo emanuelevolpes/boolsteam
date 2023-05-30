@@ -68,7 +68,7 @@
                                     <div>DELETE PROJECT: {{ $tag->name }}</div>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('admin.pegis.destroy', $tag->id) }}" method="POST">
+                                    <form action="{{ route('admin.tags.destroy', $tag->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-sm btn-secondary"
