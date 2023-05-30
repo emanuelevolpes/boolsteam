@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePegiRequest;
 use App\Http\Requests\UpdatePegiRequest;
 use App\Models\Pegi;
+use Illuminate\Support\Str;
 
 class PegiController extends Controller
 {
@@ -27,7 +28,7 @@ class PegiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pegis.create');
     }
 
     /**
@@ -38,7 +39,15 @@ class PegiController extends Controller
      */
     public function store(StorePegiRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newPegis = new Pegi();
+        $newPegis->name = $data['name'];
+        $newPegis->slug = Str::slug($newPegis->name);
+
+        $newPegis->save();
+
+        return redirect()->route('admin.pegis.index')->with('message', 'New Pegi added with success');
     }
 
     /**
