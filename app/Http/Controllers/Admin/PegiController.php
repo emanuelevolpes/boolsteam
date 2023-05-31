@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePegiRequest;
 use App\Http\Requests\UpdatePegiRequest;
 use App\Models\Pegi;
+use Illuminate\Support\Str;
 
 class PegiController extends Controller
 {
@@ -27,7 +28,7 @@ class PegiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pegis.create');
     }
 
     /**
@@ -38,7 +39,15 @@ class PegiController extends Controller
      */
     public function store(StorePegiRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newPegis = new Pegi();
+        $newPegis->name = $data['name'];
+        $newPegis->slug = Str::slug($newPegis->name);
+
+        $newPegis->save();
+
+        return redirect()->route('admin.pegis.index')->with('message', 'New Pegi added with success');
     }
 
     /**
@@ -49,7 +58,7 @@ class PegiController extends Controller
      */
     public function show(Pegi $pegi)
     {
-        //
+        return view('admin.pegis.show', compact('pegi'));
     }
 
     /**
@@ -60,7 +69,7 @@ class PegiController extends Controller
      */
     public function edit(Pegi $pegi)
     {
-        //
+        return view('admin.pegis.edit', compact('pegi'));
     }
 
     /**
@@ -72,7 +81,11 @@ class PegiController extends Controller
      */
     public function update(UpdatePegiRequest $request, Pegi $pegi)
     {
-        //
+        $data = $request->validated();
+
+        $pegi->slug = Str::slug($data['name']);
+        $pegi->update($data);
+        return redirect()->route('admin.pegis.index')->with('message', "Edit pegi $pegi->id success");
     }
 
     /**
@@ -83,6 +96,9 @@ class PegiController extends Controller
      */
     public function destroy(Pegi $pegi)
     {
-        //
+        $deletePegi = $pegi->id;
+        
+        $pegi->delete();
+        return redirect()->route('admin.pegis.index')->with('message', "Deleted pegi $deletePegi");
     }
 }
