@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use App\Models\Developer;
 use App\Models\Game;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,7 +30,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        $developers = Developer::all();
+        return view('admin.games.create', compact('developers'));
     }
 
     /**
@@ -87,7 +89,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('admin.games.edit', compact('game'));
+        $developers = Developer::all();
+        return view('admin.games.edit', compact('game', 'developers'));
     }
 
     /**

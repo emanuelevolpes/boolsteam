@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->string('publisher', 100);
-            $table->string('developer', 100);
             $table->text('genres');
             $table->string('platform');
             $table->date('year');
@@ -34,14 +33,6 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->unsignedMediumInteger('downloads');
 
-            //PEGI
-            $table->boolean('violence')->default(false);
-            $table->boolean('bad_language')->default(false);
-            $table->boolean('fear')->default(false);
-            $table->boolean('gambling')->default(false);
-            $table->boolean('sex')->default(false);
-            $table->boolean('drugs')->default(false);
-            $table->boolean('discriminations')->default(false);
 
             //TAGS
             $table->boolean('single_player');

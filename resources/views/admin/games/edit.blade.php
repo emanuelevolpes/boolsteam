@@ -6,7 +6,7 @@ Add new game
 {{-- need to fix checkbox and date format --}}
 @section('page.main')
     <div class="container">
-        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Comics list</a>
+        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Games list</a>
         <h1 class="text-center">Edit for {{ $game->title }}</h1>
         {{-- form --}}
         <form action="{{ route ('admin.games.update', $game->id) }}" method="POST" enctype="multipart/form-data>
@@ -49,11 +49,13 @@ Add new game
             </div>
             {{-- developer --}}
             <div class="mt-3">
-                <label for="developer" class="form-label">Developer</label>
-                <input type="text" class="form-control @error('developer') is-invalid @enderror" id="developer" name="developer" value="{{ old('developer', $game->developer) }}">
-                @error('developer')
-                    <div class="alert alert-danger">{{ $message }} </div>
-                @enderror
+                <label for="developer_id" class="form-label">Developer</label>
+                <select class="form-select @error('developer_id') is-invalid @enderror" name="developer_id" id="developer_id">
+                    <option value="">Select Developer</option>
+                    @foreach ($developers as $developer)
+                        <option value="{{ $developer->id }}" {{ old('developer_id', $game->developer_id) == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
+                    @endforeach
+                </select>
             </div>
             {{-- genres --}}
             <div class="mt-3">

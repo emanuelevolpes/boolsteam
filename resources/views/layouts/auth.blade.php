@@ -42,10 +42,30 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
+                        <ul class="navbar-nav me-auto overflow-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                             </li>
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.dashboard' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.games.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.games.index') }}">{{ __('Games') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.developers.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Developers') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.publishers.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Publishers') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.tags.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Tags') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.pegis.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.pegis.index')}}">{{ __('Pegis') }}</a>
+                            </li>
+                            @endauth
                         </ul>
 
                         <!-- Right Side Of Navbar -->

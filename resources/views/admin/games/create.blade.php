@@ -47,11 +47,13 @@
             </div>
             {{-- developer --}}
             <div class="mt-3">
-                <label for="developer" class="form-label">Developer</label>
-                <input type="text" class="form-control @error('developer') is-invalid @enderror" id="developer" name="developer" value="{{ old('developer') }}">
-                @error('developer')
-                    <div class="alert alert-danger">{{ $message }} </div>
-                @enderror
+                <label for="developer_id" class="form-label">Developer</label>
+                <select class="form-select @error('developer_id') is-invalid @enderror" name="developer_id" id="developer_id">
+                    <option value="">Select Developer</option>
+                    @foreach ($developers as $developer)
+                        <option value="{{ $developer->id }}" {{ old('developer_id') == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
+                    @endforeach
+                </select>
             </div>
             {{-- genres --}}
             <div class="mt-3">

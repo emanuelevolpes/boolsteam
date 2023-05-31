@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\Admin\PegiController;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\RiskyTestError;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::resource('pegis', PegiController::class);
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

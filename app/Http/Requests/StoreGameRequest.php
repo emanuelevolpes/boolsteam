@@ -25,31 +25,31 @@ class StoreGameRequest extends FormRequest
     {
         return [
             //MAIN
-            'title'=> 'required|string|max:100',
-            'image'=> 'nullable|image',
-            'description'=> 'nullable',
-            'publisher'=> 'required|string|max:100',
-            'developer'=> 'required|string|max:100',
-            'genres'=> 'required',
-            'platform'=> 'required',
-            'year'=> 'required',
+            'title' => 'required|string|max:100',
+            'image' => 'nullable|url|ends_with:png,jpg,webp',
+            'description' => 'nullable',
+            'publisher' => 'required|string|max:100',
+            'developer_id' => 'nullable|exists:developers,id',
+            'genres' => 'required',
+            'platform' => 'required',
+            'year' => 'required'
 
             //COMMERCIAL
-            'region'=> 'required|string',
-            'sales'=> 'required|integer',
-            'price'=> 'required|numeric',
-            'score'=> 'required|numeric',
-            'downloads'=> 'required|integer',
+            'region' => 'required|string',
+            'sales' => 'required|integer',
+            'price' => 'required|numeric',
+            'score' => 'required|numeric',
+            'downloads' => 'required|integer',
 
             //TAGS
-            'supported_languages'=> 'required|string',
+            'supported_languages' => 'required|string',
 
             //REQUIREMENTS
-            'minimum_operating_system'=> 'required|string',
-            'minimum_memory_ram'=> 'required|integer',
-            'minimum_gpu'=> 'required|integer',
-            'minimum_cpu'=> 'required|integer',
-            'space_required'=> 'required|numeric'
+            'minimum_operating_system' => 'required|string',
+            'minimum_memory_ram' => 'required|integer',
+            'minimum_gpu' => 'required|integer',
+            'minimum_cpu' => 'required|integer',
+            'space_required' => 'required|numeric'
         ];
     }
 }
