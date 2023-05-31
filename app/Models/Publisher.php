@@ -9,6 +9,8 @@ class Publisher extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function games(){
         return $this->hasMany(Game::class);
         }

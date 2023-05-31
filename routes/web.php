@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\PegiController;
+use App\Http\Controllers\Admin\PublisherController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\RiskyTestError;
@@ -42,6 +43,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('pegis', PegiController::class);
     Route::resource('tags', TagController::class);
     Route::resource('genres', GenreController::class);
+    Route::resource('publishers', PublisherController::class);
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

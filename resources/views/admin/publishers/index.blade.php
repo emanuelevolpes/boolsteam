@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('page.title')
-    Games
+    Developers
 @endsection
 
 @section('page.main')
     <div class="container my-5">
-        <a href="{{ route('admin.games.create') }}" class="btn btn-sm btn-primary">Create new game</a>
-
+        <a href="{{ route('admin.publishers.create') }}" class="btn btn-sm btn-primary">Add new publishers</a>
+        
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
                 <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
@@ -22,37 +22,31 @@
                 </div>
             </div>
         @endif
-
+        
         <table class="table table-hover align-middle">
             <thead>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Developer</th>
-                <th scope="col">Platform</th>
-                <th scope="col">Price €</th>
-                <th scope="col">Info</th>
+                <th scope="col">name</th>
+                <th scope="col">Action</th>
             </thead>
             <tbody>
-                @foreach ($games as $game)
-                    <tr onclick="window.location='{{ route('admin.games.show', $game->id) }}'" style="cursor: pointer">
-                        <td>{{ $game->id }}</td>
-                        <td>{{ $game->title }}</td>
-                        <td>{{ $game->developer?->name }}</td>
-                        <td>{{ $game->platform }}</td>
-                        <td>{{ $game->price }}</td>
+                @foreach ($publishers as $publisher)
+                    <tr onclick="window.location='{{ route('admin.publishers.show', $publisher->id) }}'" style="cursor: pointer">
+                        <td>{{ $publisher->id }}</td>
+                        <td>{{ $publisher->name }}</td>
                         <td colspan="3">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('admin.games.show', $game->id) }}"
+                                <a href="{{ route('admin.publishers.show', $publisher) }}"
                                     class="btn btn-sm border-dark">Detail</a>
-                                <a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('admin.publishers.edit', $publisher) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete{{ $game->id }}" onclick="event.stopPropagation()">
+                                    data-bs-target="#delete{{ $publisher->id }}" onclick="event.stopPropagation()">
                                     Delete
                                 </button>
                             </div>
                         </td>
                     </tr>
-                    <div class="modal fade" id="delete{{ $game->id }}" tabindex="-1"
+                    <div class="modal fade" id="delete{{ $publisher->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -62,10 +56,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div>DELETE PROJECT: {{ $game->title }}</div>
+                                    <div>DELETE PROJECT: {{ $publisher->name }}</div>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('admin.games.destroy', $game->id) }}" method="POST">
+                                    <form action="{{ route('admin.publishers.destroy', $publisher->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-sm btn-secondary"

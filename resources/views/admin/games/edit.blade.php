@@ -284,7 +284,7 @@
             <hr>
 
             {{-- submit button --}}
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
         </form>
     </div>
 @endsection

@@ -57,13 +57,16 @@
                                 <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.developers.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.developers.index')}}">{{ __('Developers') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.publishers.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Publishers') }}</a>
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.publishers.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.publishers.index')}}">{{ __('Publishers') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.tags.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.tags.index') }}">{{ __('Tags') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.pegis.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.pegis.index')}}">{{ __('Pegis') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.genres.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.genres.index')}}">{{ __('Genres') }}</a>
                             </li>
                             @endauth
                         </ul>
