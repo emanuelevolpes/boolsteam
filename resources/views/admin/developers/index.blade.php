@@ -7,11 +7,28 @@
 @section('page.main')
     <div class="container my-5">
         <a href="{{ route('admin.developers.create') }}" class="btn btn-sm btn-primary">Add new developer</a>
+        
+        @if (session('message'))
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
+                <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <div class="d-flex py-2">
+                        <div class="toast-body fw-bold">
+                            {{ session('message') }}
+                        </div>
+                        <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        @endif
+        
         <table class="table table-hover align-middle">
             <thead>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
                 <th scope="col">slug</th>
+                <th scope="col">Action</th>
             </thead>
             <tbody>
                 @foreach ($developers as $developer)
@@ -23,7 +40,7 @@
                             <div class="d-flex gap-2">
                                 <a href="{{ route('admin.developers.show', $developer->id) }}"
                                     class="btn btn-sm border-dark">Detail</a>
-                                <a href="{{ route('admin.developers.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('admin.developers.edit', $developer->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#delete{{ $developer->id }}" onclick="event.stopPropagation()">
                                     Delete

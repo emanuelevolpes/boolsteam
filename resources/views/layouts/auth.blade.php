@@ -54,7 +54,7 @@
                                 <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.games.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.games.index') }}">{{ __('Games') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.developers.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Developers') }}</a>
+                                <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.developers.index' ? 'color:red; text-decoration:underline ': ''}}" href="{{ route('admin.developers.index')}}">{{ __('Developers') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="{{ Route::currentRouteName() === 'admin.publishers.index' ? 'color:red; text-decoration:underline ': ''}}" href="">{{ __('Publishers') }}</a>
