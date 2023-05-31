@@ -17,4 +17,12 @@ class GameController extends Controller
             'games' => $game,
         ]);
     }
+    public function one(){
+        $game = Game::with('tags','genres','developer','pegis','publisher')->inRandomOrder()->first();
+
+        return response()->json([
+            'success' => true,
+            'game' => $game,
+        ]);
+    }
 }
