@@ -12,7 +12,6 @@
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Developer</th>
-                <th scope="col">Genres</th>
                 <th scope="col">Platform</th>
                 <th scope="col">Price €</th>
                 <th scope="col">Info</th>
@@ -23,7 +22,6 @@
                         <td>{{ $game->id }}</td>
                         <td>{{ $game->title }}</td>
                         <td>{{ $game->developer->name }}</td>
-                        <td>{{ $game->genres }}</td>
                         <td>{{ $game->platform }}</td>
                         <td>{{ $game->price }}</td>
                         <td colspan="3">

@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
   
-    protected $guarded = [];
+    protected $guarded = ['tags','genres','pegis'];
 
 
     public function publisher(){

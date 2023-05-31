@@ -9,6 +9,7 @@ use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Genre;
 use App\Models\Pegi;
+use App\Models\Publisher;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,13 +36,13 @@ class GameController extends Controller
     {
 
         $developers = Developer::all();
-      
+
         $tags = Tag::all();
         $genres = Genre::all();
         $pegis = Pegi::all();
+        $publishers = Publisher::all();
 
-        return view('admin.games.create', compact('developers','tags','genres','pegis'));
-
+        return view('admin.games.create', compact('developers', 'tags', 'genres', 'pegis', 'publishers'));
     }
 
     /**
@@ -54,36 +55,35 @@ class GameController extends Controller
     {
         $data = $request->validated();
         $newGame = new Game();
-
-        //IMAGE STORAGE
-        if(isset($data['image'])){
+        
+        // IMAGE STORAGE
+        if (isset($data['image'])) {
             $newGame->image = Storage::put('uploads', $data['image']);
         }
-        
-        //PEGI
+
         $newGame->is_available = $request['is_available'] ? 1 : 0;
-        $newGame->violence = $request['violence'] ? 1 : 0;
-        $newGame->bad_language = $request['bad_language'] ? 1 : 0;
-        $newGame->fear = $request['fear'] ? 1 : 0;
-        $newGame->gambling = $request['gambling'] ? 1 : 0;
-        $newGame->sex = $request['sex'] ? 1 : 0;
-        $newGame->drugs = $request['drugs'] ? 1 : 0;
-        $newGame->discriminations = $request['discriminations'] ? 1 : 0;
-        //TAGS
-        $newGame->single_player = $request['single_player'] ? 1 : 0;
-        $newGame->multiplayer = $request['multiplayer'] ? 1 : 0;
-        $newGame->online_pvp = $request['online_pvp'] ? 1 : 0;
-        $newGame->online_coop = $request['online_coop'] ? 1 : 0;
-        $newGame->is_dlc = $request['is_dlc'] ? 1 : 0;
-
-
-        if(isset($data['publisher_id'])){
-            $newGame->publisher_id = $data['publisher_id'];
-        }
 
         $newGame->fill($data);
+
+
+        if (isset($data['developer_id'])) {
+            $newGame->developer_id = $data['developer_id'];
+        }
+        if (isset($data['publisher_id'])) {
+            $newGame->publisher_id = $data['publisher_id'];
+        }
+        
         $newGame->save();
 
+        if (isset($data['tags'])) {
+            $newGame->tags()->sync($data['tags']);
+        }
+        if (isset($data['pegis'])) {
+            $newGame->pegis()->sync($data['pegis']);
+        } 
+        if(isset($data['genres'])){
+            $newGame->genres()->sync($data['genres']);
+        }
         return to_route('admin.games.index');
     }
 
@@ -121,12 +121,12 @@ class GameController extends Controller
     {
         $data = $request->validated();
         // IMAGE STORAGE
-        if(isset($data['image'])){
-             if($game->image){
-                 Storage::delete($game->image);
-             }   
-             $game->image = Storage::put('uploads', $data['image']);
+        if (isset($data['image'])) {
+            if ($game->image) {
+                Storage::delete($game->image);
             }
+            $game->image = Storage::put('uploads', $data['image']);
+        }
         //PEGI
         $game->is_available = $request['is_available'] ? 1 : 0;
         $game->violence = $request['violence'] ? 1 : 0;
