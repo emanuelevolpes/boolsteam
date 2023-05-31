@@ -14,6 +14,7 @@ class UpdateDeveloperRequest extends FormRequest
     public function authorize()
     {
         return true;
+
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdateDeveloperRequest extends FormRequest
     public function rules()
     {
         return [
+
             'name' => 'required|string|max:100',
+
         ];
     }
 }

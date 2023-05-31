@@ -33,12 +33,15 @@ class GameController extends Controller
      */
     public function create()
     {
+
         $developers = Developer::all();
+      
         $tags = Tag::all();
         $genres = Genre::all();
         $pegis = Pegi::all();
 
         return view('admin.games.create', compact('developers','tags','genres','pegis'));
+
     }
 
     /**
@@ -72,6 +75,12 @@ class GameController extends Controller
         $newGame->online_pvp = $request['online_pvp'] ? 1 : 0;
         $newGame->online_coop = $request['online_coop'] ? 1 : 0;
         $newGame->is_dlc = $request['is_dlc'] ? 1 : 0;
+
+
+        if(isset($data['publisher_id'])){
+            $newGame->publisher_id = $data['publisher_id'];
+        }
+
         $newGame->fill($data);
         $newGame->save();
 

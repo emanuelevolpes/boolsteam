@@ -11,6 +11,11 @@ class Game extends Model
   
     protected $guarded = [];
 
+
+    public function publisher(){
+        return $this->belongsTo(Publisher::class); 
+    }
+
     public function developer()
     {
         return $this->belongsTo(Developer::class);
@@ -21,6 +26,7 @@ class Game extends Model
     }
     public function genres(){
         return $this->belongsToMany(Genre::class);
+
     }
     public function tags(){
         return $this->belongsToMany(Tag::class);
