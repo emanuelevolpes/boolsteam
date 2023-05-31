@@ -19,4 +19,7 @@ class Game extends Model
         return $this->belongsToMany(Pegi::class);
       
     }
+    public function genres(){
+        return $this->belongsToMany(Genre::class);
+    }
 }
