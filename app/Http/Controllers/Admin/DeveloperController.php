@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Developer;
 use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
+use Illuminate\Support\Str;
 
 class DeveloperController extends Controller
 {
@@ -15,7 +17,9 @@ class DeveloperController extends Controller
      */
     public function index()
     {
-        //
+        $developers = Developer::all();
+
+        return view('admin.developers.index', compact('developers'));
     }
 
     /**
@@ -25,7 +29,7 @@ class DeveloperController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.developers.create');
     }
 
     /**
@@ -36,7 +40,13 @@ class DeveloperController extends Controller
      */
     public function store(StoreDeveloperRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_developer = new Developer();
+        $new_developer->fill($data);
+
+        $new_developer->slug = Str::slug($new_developer->name, '-');
+
+        $new_developer->save();
     }
 
     /**
@@ -47,7 +57,7 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        //
+        return view('admin.developers.show');
     }
 
     /**
@@ -58,7 +68,7 @@ class DeveloperController extends Controller
      */
     public function edit(Developer $developer)
     {
-        //
+        return view('admin.developers.edit');
     }
 
     /**
@@ -70,7 +80,11 @@ class DeveloperController extends Controller
      */
     public function update(UpdateDeveloperRequest $request, Developer $developer)
     {
-        //
+        $data = $request->validated();
+        $developer->slug = Str::slug($developer->name, '-');
+        $developer->update($data);
+
+        return to_route('admin.developers.index');
     }
 
     /**
@@ -81,6 +95,7 @@ class DeveloperController extends Controller
      */
     public function destroy(Developer $developer)
     {
-        //
+        $developer->delete();
+        return to_route('admin.developers.index');
     }
 }

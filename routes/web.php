@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DeveloperController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\PegiController;
@@ -28,8 +29,9 @@ Route::get('/', function () {
 // Route::resource('games', GameController::class);
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::resource('games', GameController::class);
+    Route::resource('developers', DeveloperController::class);
 
     Route::get('/', function () {
         return view('admin.dashboard');
