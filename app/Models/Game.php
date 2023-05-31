@@ -8,9 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+  
     protected $guarded = [];
 
+
     public function publisher(){
-        return $this->belongsTo(publisher::class);
+        return $this->belongsTo(Publisher::class); 
+    }
+
+    public function developer()
+    {
+        return $this->belongsTo(Developer::class);
+    }
+    public function pegis(){
+        return $this->belongsToMany(Pegi::class);
+      
+    }
+    public function genres(){
+        return $this->belongsToMany(Genre::class);
+
     }
 }

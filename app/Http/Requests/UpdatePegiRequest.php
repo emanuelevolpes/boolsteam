@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateDeveloperRequest extends FormRequest
+class UpdatePegiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +15,6 @@ class UpdateDeveloperRequest extends FormRequest
     public function authorize()
     {
         return true;
-
     }
 
     /**
@@ -25,9 +25,12 @@ class UpdateDeveloperRequest extends FormRequest
     public function rules()
     {
         return [
-
-            'name' => 'required|string|max:100',
-
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('pegis','name')->ignore($this->pegi),  
+            ]
+            
         ];
     }
 }

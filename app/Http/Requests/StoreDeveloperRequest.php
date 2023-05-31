@@ -13,7 +13,9 @@ class StoreDeveloperRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+
+        return true;
+
     }
 
     /**
@@ -24,7 +26,9 @@ class StoreDeveloperRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'name' => 'required|string|max:100',
+
         ];
     }
 }

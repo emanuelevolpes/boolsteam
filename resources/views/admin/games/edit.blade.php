@@ -6,10 +6,10 @@ Add new game
 {{-- need to fix checkbox and date format --}}
 @section('page.main')
     <div class="container">
-        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Comics list</a>
+        <a href="{{ route('admin.games.index')}}" class="btn btn-primary">Games list</a>
         <h1 class="text-center">Edit for {{ $game->title }}</h1>
         {{-- form --}}
-        <form action="{{ route ('admin.games.update', $game->id) }}" method="POST">
+        <form action="{{ route ('admin.games.update', $game->id) }}" method="POST" enctype="multipart/form-data>
         @csrf {{-- token for identification --}}
         @method('PATCH') {{-- real method instead of post --}}
             {{-- title --}}
@@ -22,12 +22,15 @@ Add new game
             </div>        
             {{-- image --}}
             <div class="mt-3">
+                <div class="preview">
+                    <img id="file-image-preview"  @if($game->image) src="{{ asset('storage/' . $game->image)}}" @endif>
+                </div>
                 <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image', $game->image) }}">
+                <input class="form-control @error('image') is-invalid @enderror"  type="file" id="image" name="image">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }} </div>
                 @enderror
-            </div>
+              </div>
             {{-- description --}}
             <div class="mt-3">
                 <label for="description" class="form-label">Description</label>
@@ -46,11 +49,13 @@ Add new game
             </div>
             {{-- developer --}}
             <div class="mt-3">
-                <label for="developer" class="form-label">Developer</label>
-                <input type="text" class="form-control @error('developer') is-invalid @enderror" id="developer" name="developer" value="{{ old('developer', $game->developer) }}">
-                @error('developer')
-                    <div class="alert alert-danger">{{ $message }} </div>
-                @enderror
+                <label for="developer_id" class="form-label">Developer</label>
+                <select class="form-select @error('developer_id') is-invalid @enderror" name="developer_id" id="developer_id">
+                    <option value="">Select Developer</option>
+                    @foreach ($developers as $developer)
+                        <option value="{{ $developer->id }}" {{ old('developer_id', $game->developer_id) == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
+                    @endforeach
+                </select>
             </div>
             {{-- genres --}}
             <div class="mt-3">

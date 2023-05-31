@@ -1,44 +1,61 @@
 @extends('layouts.app')
 
 @section('page.title')
-    Games
+    Movies
 @endsection
 
 @section('page.main')
     <div class="container my-5">
-        <a href="{{ route('admin.games.create') }}" class="btn btn-sm btn-primary">Create new game</a>
+        <a href="{{ route('admin.pegis.create') }}" class="btn btn-sm btn-primary">Create new game</a>
+        
+        {{-- Message for create and update PEGI --}}
+        @if (session('message'))
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
+                <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <div class="d-flex py-2">
+                        <div class="toast-body fw-bold">
+                            {{ session('message') }}
+                        </div>
+                        <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        {{-- PEGI'S Table --}}
         <table class="table table-hover align-middle">
             <thead>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Developer</th>
-                <th scope="col">Genres</th>
-                <th scope="col">Platform</th>
-                <th scope="col">Price €</th>
+                <th scope="col">Name</th>
+                <th scope="col">Slug</th>
                 <th scope="col">Info</th>
             </thead>
             <tbody>
-                @foreach ($games as $game)
-                    <tr onclick="window.location='{{ route('admin.games.show', $game->id) }}'" style="cursor: pointer">
-                        <td>{{ $game->id }}</td>
-                        <td>{{ $game->title }}</td>
-                        <td>{{ $game->developer->name }}</td>
-                        <td>{{ $game->genres }}</td>
-                        <td>{{ $game->platform }}</td>
-                        <td>{{ $game->price }}</td>
+                {{-- Cicle on list of pegis --}}
+                @foreach ($pegis as $pegi)
+                    {{-- table row --}}
+                    <tr onclick="window.location='{{ route('admin.pegis.show', $pegi->id) }}'" style="cursor: pointer">
+                        <td>{{ $pegi->id }}</td>
+                        <td>{{ $pegi->name }}</td>
+                        <td>{{ $pegi->slug }}</td>
                         <td colspan="3">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('admin.games.show', $game->id) }}"
+                                <a href="{{ route('admin.pegis.show', $pegi->id) }}"
                                     class="btn btn-sm border-dark">Detail</a>
-                                <a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('admin.pegis.edit', $pegi->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete{{ $game->id }}" onclick="event.stopPropagation()">
+                                    data-bs-target="#delete{{ $pegi->id }}" onclick="event.stopPropagation()">
                                     Delete
                                 </button>
                             </div>
                         </td>
                     </tr>
-                    <div class="modal fade" id="delete{{ $game->id }}" tabindex="-1"
+                    {{-- /table row --}}
+
+                    {{-- Modal for delete --}}
+                    <div class="modal fade" id="delete{{ $pegi->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -48,10 +65,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div>DELETE PROJECT: {{ $game->title }}</div>
+                                    <div>DELETE PROJECT: {{ $pegi->name }}</div>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('admin.games.destroy', $game->id) }}" method="POST">
+                                    <form action="{{ route('admin.pegis.destroy', $pegi->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-sm btn-secondary"
@@ -62,6 +79,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- -------- --}}
                 @endforeach
             </tbody>
         </table>

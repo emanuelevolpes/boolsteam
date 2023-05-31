@@ -7,6 +7,7 @@ use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Models\Developer;
 use App\Models\Game;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -29,12 +30,10 @@ class GameController extends Controller
      */
     public function create()
     {
-     
-        $data= [
-            'developers'=> Developer::all()->sortBy('name')
-        ];
-   
-        return view('admin.games.create',$data);
+
+        $developers = Developer::all();
+        return view('admin.games.create', compact('developers'));
+
     }
 
     /**
@@ -47,6 +46,11 @@ class GameController extends Controller
     {
         $data = $request->validated();
         $newGame = new Game();
+
+        //IMAGE STORAGE
+        if(isset($data['image'])){
+            $newGame->image = Storage::put('uploads', $data['image']);
+        }
         //PEGI
         $newGame->is_available = $request['is_available'] ? 1 : 0;
         $newGame->violence = $request['violence'] ? 1 : 0;
@@ -93,7 +97,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('admin.games.edit', compact('game'));
+        $developers = Developer::all();
+        return view('admin.games.edit', compact('game', 'developers'));
     }
 
     /**
@@ -106,6 +111,13 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->validated();
+        // IMAGE STORAGE
+        if(isset($data['image'])){
+             if($game->image){
+                 Storage::delete($game->image);
+             }   
+             $game->image = Storage::put('uploads', $data['image']);
+            }
         //PEGI
         $game->is_available = $request['is_available'] ? 1 : 0;
         $game->violence = $request['violence'] ? 1 : 0;

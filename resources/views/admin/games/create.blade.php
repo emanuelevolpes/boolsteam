@@ -8,7 +8,7 @@
     <div class="container">
         <a href="{{ route('admin.games.index') }}" class="btn btn-primary">Games list</a>
         {{-- form --}}
-        <form action="{{ route('admin.games.store') }}" method="POST">
+        <form action="{{ route('admin.games.store') }}" method="POST" enctype="multipart/form-data">
             @csrf {{-- token for identification --}}
             {{-- title --}}
             <div>
@@ -20,12 +20,15 @@
             </div>
             {{-- image --}}
             <div class="mt-3">
+                <div class="preview">
+                    <img id="file-image-preview">
+                </div>
                 <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}">
+                <input class="form-control @error('image') is-invalid @enderror"  type="file" id="image" name="image">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }} </div>
                 @enderror
-            </div>
+              </div>
             {{-- description --}}
             <div class="mt-3">
                 <label for="description" class="form-label">Description</label>
@@ -45,11 +48,11 @@
             {{-- developer --}}
 
             <div class="mt-3">
-                <label for="developer" class="form-label">Developer</label>
-                <select class="form-select" name="developers_id" id="">
-                    <option value="">select Developer</option>
-                    @foreach ($developers as $developer )
-                        <option value="{{developer_id}}">{{$developer->name}}</option>
+                <label for="developer_id" class="form-label">Developer</label>
+                <select class="form-select @error('developer_id') is-invalid @enderror" name="developer_id" id="developer_id">
+                    <option value="">Select Developer</option>
+                    @foreach ($developers as $developer)
+                        <option value="{{ $developer->id }}" {{ old('developer_id') == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
                     @endforeach
                 </select>
             </div>
