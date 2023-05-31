@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('image')->nullable();
             $table->text('description')->nullable();
-            $table->string('publisher', 100);
             $table->string('platform');
             $table->date('year');
 
@@ -31,16 +30,8 @@ return new class extends Migration
             $table->float('score', 6, 3);
             $table->boolean('is_available')->default(true);
             $table->unsignedMediumInteger('downloads');
-
-
-            //TAGS
-            $table->boolean('single_player');
-            $table->boolean('multiplayer');
-            $table->boolean('online_pvp');
-            $table->boolean('online_coop');
             $table->text('supported_languages');
-            $table->boolean('is_dlc');
-
+            
             //REQUIREMENTS
             $table->string('minimum_operating_system');
             $table->tinyInteger('minimum_memory_ram');

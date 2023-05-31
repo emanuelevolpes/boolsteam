@@ -10,7 +10,7 @@ class GameController extends Controller
 {
     public function index(){
 
-        $game = Game::with('tags','genres','developer','pegis')->paginate(6);
+        $game = Game::with('tags','genres','developer','pegis','publisher')->paginate(6);
 
         return response()->json([
             'success' => true,

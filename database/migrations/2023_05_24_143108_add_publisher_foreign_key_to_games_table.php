@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-        $table->foreignId('publisher_id')->nullable()->constrained()->after('id')->nullable()->nullOnDelete();
+            $table->foreignId('publisher_id')->nullable()->constrained()->after('id')->nullable()->nullOnDelete();
         });
     }
 

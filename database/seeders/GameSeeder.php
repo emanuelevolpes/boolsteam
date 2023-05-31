@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\Publisher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -28,12 +29,12 @@ class GameSeeder extends Seeder
             $new_game = new Game();
 
             $developer = Developer::inRandomOrder()->first();
-            $genre = Genre::all();
+            $publisher = Publisher::inRandomOrder()->first();
             // MAIN
             $new_game->title = $faker->sentence(5); // Genera una scritta di 5 parole
             $new_game->image = $faker->imageUrl(480, 640, 'games'); // URL immagine random con dimensioni 480x640
             $new_game->description = $faker->text(); // Genera un testo di 200 
-            $new_game->publisher = $faker->sentence(3); // Genera una scritta di 3 parole
+            $new_game->publisher_id = $publisher->id; // G
             $new_game->developer_id = $developer->id; // Genera un scritta con un numero random di parole
             $new_game->platform = Arr::join($faker->randomElements(['PC', 'PS4', 'XBOX', 'PS5', 'Nintendo Switch'], $faker->numberBetween(1, 5)), ', '); // Genera una stringa da un array lunga un numero random tra 1 e 5
             $new_game->year = $faker->date('Y-m-d'); // Data in formato  (Y-m-d)
@@ -47,12 +48,7 @@ class GameSeeder extends Seeder
             $new_game->downloads = $faker->numberBetween(0, 65535); //Generate a random number between 0 and 65535
 
             // TAGS
-            $new_game->single_player = $faker->boolean();
-            $new_game->multiplayer = $faker->boolean();
-            $new_game->online_pvp = $faker->boolean();
-            $new_game->online_coop = $faker->boolean();
             $new_game->supported_languages = Arr::join($faker->randomElements(['Italian', 'English', 'French', 'Spanish'], $faker->numberBetween(1, 4)), ', '); // Genera una strina da un array lunga un numero random tra 1 e 4
-            $new_game->is_dlc = $faker->boolean();
 
             // REQUIRED SYSTEM
             $new_game->minimum_operating_system = $faker->randomElement(['Windows 7', 'Windows 8', 'Window 10']); // Prende un elemento dall'array fornito
