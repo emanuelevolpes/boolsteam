@@ -30,9 +30,11 @@ class StoreGameRequest extends FormRequest
             'description' => 'nullable',
             'publisher' => 'required|string|max:100',
             'developer_id' => 'nullable|exists:developers,id',
-            'genres' => 'required',
+            'genres' => 'nullable|exists:genres,id',
+            'tags' => 'nullable|exists:tags,id',
+            'pegis' => 'nullable|exists:pegis,id',
             'platform' => 'required',
-            'year' => 'required'
+            'year' => 'required',
 
             //COMMERCIAL
             'region' => 'required|string',
