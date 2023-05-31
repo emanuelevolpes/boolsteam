@@ -122,6 +122,11 @@
                     @if ($game->is_dlc == 1)
                         <li class="my-2 tags typo">DLC</li>
                     @endif
+
+                    <hr>
+                    developer: {{$game->developer}}
+                    <hr>
+
                 </ul>
             </div>
         </div>

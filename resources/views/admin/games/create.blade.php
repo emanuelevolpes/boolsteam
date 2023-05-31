@@ -46,6 +46,7 @@
                 @enderror
             </div>
             {{-- developer --}}
+
             <div class="mt-3">
                 <label for="developer_id" class="form-label">Developer</label>
                 <select class="form-select @error('developer_id') is-invalid @enderror" name="developer_id" id="developer_id">
