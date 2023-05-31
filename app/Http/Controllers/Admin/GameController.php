@@ -12,6 +12,7 @@ use App\Models\Pegi;
 use App\Models\Publisher;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
 class GameController extends Controller
 {
@@ -84,7 +85,7 @@ class GameController extends Controller
         if(isset($data['genres'])){
             $newGame->genres()->sync($data['genres']);
         }
-        return to_route('admin.games.index');
+        return to_route('admin.games.index')->with('message', "New game added with success");
     }
 
     /**
@@ -107,7 +108,12 @@ class GameController extends Controller
     public function edit(Game $game)
     {
         $developers = Developer::all();
-        return view('admin.games.edit', compact('game', 'developers'));
+        $pegis = Pegi::all();
+        $tags = Tag::all();
+        $publishers = Publisher::all();
+        $genres = Genre::all();
+
+        return view('admin.games.edit', compact('game', 'developers','pegis','tags','publishers','genres'));
     }
 
     /**
@@ -129,23 +135,31 @@ class GameController extends Controller
         }
         //PEGI
         $game->is_available = $request['is_available'] ? 1 : 0;
-        $game->violence = $request['violence'] ? 1 : 0;
-        $game->bad_language = $request['bad_language'] ? 1 : 0;
-        $game->fear = $request['fear'] ? 1 : 0;
-        $game->gambling = $request['gambling'] ? 1 : 0;
-        $game->sex = $request['sex'] ? 1 : 0;
-        $game->drugs = $request['drugs'] ? 1 : 0;
-        $game->discriminations = $request['discriminations'] ? 1 : 0;
-        //TAGS
-        $game->single_player = $request['single_player'] ? 1 : 0;
-        $game->multiplayer = $request['multiplayer'] ? 1 : 0;
-        $game->online_pvp = $request['online_pvp'] ? 1 : 0;
-        $game->online_coop = $request['online_coop'] ? 1 : 0;
-        $game->is_dlc = $request['is_dlc'] ? 1 : 0;
 
-        $game->update($data);
+        $game->fill($data);
 
-        return to_route('admin.games.index');
+
+        if (isset($data['developer_id'])) {
+            $game->developer_id = $data['developer_id'];
+        }
+        if (isset($data['publisher_id'])) {
+            $game->publisher_id = $data['publisher_id'];
+        }
+        
+        if (isset($data['tags'])) {
+            $game->tags()->sync($data['tags']);
+        }
+        if (isset($data['pegis'])) {
+            $game->pegis()->sync($data['pegis']);
+        } 
+        if(isset($data['genres'])){
+            $game->genres()->sync($data['genres']);
+        }
+
+        $game->update();
+
+        
+        return to_route('admin.games.index')->with('message',"Game $game->id edited with success");
     }
 
     /**
@@ -156,6 +170,12 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        
+
+        if($game->image){
+            Storage::delete($game->image);
+        }
+
         $game->delete();
         return to_route('admin.games.index');
     }

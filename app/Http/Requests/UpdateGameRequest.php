@@ -28,9 +28,11 @@ class UpdateGameRequest extends FormRequest
             'title' => 'required|string|max:100',
             'image' => 'nullable|url|ends_with:png,jpg,webp',
             'description' => 'nullable',
-            'publisher' => 'required|string|max:100',
+            'publisher_id' => 'nullable|exists:publishers,id',
             'developer_id' => 'nullable|exists:developers,id',
-            'genres' => 'required',
+            'genres' => 'nullable|exists:genres,id',
+            'tags' => 'nullable|exists:tags,id',
+            'pegis' => 'nullable|exists:pegis,id',
             'platform' => 'required',
             'year' => 'required',
 
@@ -40,6 +42,7 @@ class UpdateGameRequest extends FormRequest
             'price' => 'required|numeric',
             'score' => 'required|numeric',
             'downloads' => 'required|integer',
+            'discount' => 'nullable|integer',
 
             //TAGS
             'supported_languages' => 'required|string',
