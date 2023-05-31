@@ -43,7 +43,7 @@ class TagController extends Controller
         
         $newTag = new Tag();
 
-        $newTag->nome = $data['name'];
+        $newTag->name = $data['name'];
         $newTag->slug = Str::slug($newTag->name);
 
         $newTag->save();

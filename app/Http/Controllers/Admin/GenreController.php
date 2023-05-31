@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use App\Models\Genre;
+use Illuminate\Support\Str;
+
 
 class GenreController extends Controller
 {
@@ -16,7 +18,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $genres = Genre::all();
+        return view('admin.genres.index', compact('genres'));
     }
 
     /**
@@ -26,7 +29,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.genres.create');
     }
 
     /**
@@ -37,7 +40,16 @@ class GenreController extends Controller
      */
     public function store(StoreGenreRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newGenre = new Genre();
+
+        $newGenre->name = $data['name'];
+        $newGenre->slug = Str::slug($newGenre->name);
+
+        $newGenre->save();
+
+        return redirect()->route('admin.genres.index')->with('message', 'Genre created with success');
     }
 
     /**
@@ -48,7 +60,7 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        return view('admin.genres.show', compact('genre'));
     }
 
     /**
@@ -59,7 +71,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        return view('admin.genres.edit', compact('genre'));
     }
 
     /**
@@ -71,7 +83,12 @@ class GenreController extends Controller
      */
     public function update(UpdateGenreRequest $request, Genre $genre)
     {
-        //
+        $data = $request->validated();
+
+        $genre->slug = Str::slug($data['name']);
+        $genre->update($data);
+
+        return redirect()->route('admin.genres.index')->with('message', "Genre $genre->id edit with success");
     }
 
     /**
@@ -82,6 +99,9 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $deleteGenre = $genre->id;
+        $genre->delete();
+
+        return redirect()->route('admin.genre.destroy')->with('message', "Genre $deleteGenre deleted with success");
     }
 }
