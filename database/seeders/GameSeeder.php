@@ -37,7 +37,7 @@ class GameSeeder extends Seeder
             $new_game->description = $faker->text(); // Genera un testo di 200 
             $new_game->publisher_id = $publisher->id; // G
             $new_game->developer_id = $developer->id; // Genera un scritta con un numero random di parole
-            $new_game->platform = Arr::join($faker->randomElements(['PC', 'PS4', 'XBOX', 'PS5', 'Nintendo Switch'], $faker->numberBetween(1, 5)), ', '); // Genera una stringa da un array lunga un numero random tra 1 e 5
+            $new_game->platform = Arr::join($faker->randomElements(['Windows', 'Mac', 'Steam'], $faker->numberBetween(1, 3)), ', '); // Genera una stringa da un array lunga un numero random tra 1 e 5
             $new_game->year = $faker->date('Y-m-d'); // Data in formato  (Y-m-d)
 
             //COMMERCIAL 
