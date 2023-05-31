@@ -9,7 +9,7 @@
         <a href="{{ route('admin.games.index') }}" class="btn btn-primary">Games list</a>
         <div class="d-flex  gap-3 my-5">
             <div>
-                <img class="img-fluid" src="{{ $game->image }}" alt="{{ $game->title }}">
+                <img class="img-fluid" src="{{ asset('storage/' . $game->image)}}" alt="{{ $game->title }}">
             </div>
             <div class="mt-3">
                 <ul class="list-unstyled">

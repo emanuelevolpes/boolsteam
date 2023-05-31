@@ -32,7 +32,7 @@ class StoreGameRequest extends FormRequest
             'developer_id' => 'nullable|exists:developers,id',
             'genres' => 'required',
             'platform' => 'required',
-            'year' => 'required',
+            'year' => 'required'
 
             //COMMERCIAL
             'region' => 'required|string',
