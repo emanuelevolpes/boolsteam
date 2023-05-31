@@ -7,6 +7,9 @@ use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Models\Developer;
 use App\Models\Game;
+use App\Models\Genre;
+use App\Models\Pegi;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
@@ -31,7 +34,11 @@ class GameController extends Controller
     public function create()
     {
         $developers = Developer::all();
-        return view('admin.games.create', compact('developers'));
+        $tags = Tag::all();
+        $genres = Genre::all();
+        $pegis = Pegi::all();
+
+        return view('admin.games.create', compact('developers','tags','genres','pegis'));
     }
 
     /**
@@ -49,6 +56,7 @@ class GameController extends Controller
         if(isset($data['image'])){
             $newGame->image = Storage::put('uploads', $data['image']);
         }
+        
         //PEGI
         $newGame->is_available = $request['is_available'] ? 1 : 0;
         $newGame->violence = $request['violence'] ? 1 : 0;

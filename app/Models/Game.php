@@ -22,4 +22,7 @@ class Game extends Model
     public function genres(){
         return $this->belongsToMany(Genre::class);
     }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
