@@ -9,8 +9,10 @@ class Developer extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['slug'];
+
     public function games()
     {
-        return $this->belongsToMany(Game::class);
+        return $this->hasMany(Game::class);
     }
 }

@@ -47,6 +47,8 @@ class DeveloperController extends Controller
         $new_developer->slug = Str::slug($new_developer->name, '-');
 
         $new_developer->save();
+
+        return redirect()->route('admin.developers.index')->with('message','New developer added with success');
     }
 
     /**
@@ -57,7 +59,7 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        return view('admin.developers.show');
+        return view('admin.developers.show',compact('developer'));
     }
 
     /**
@@ -68,7 +70,7 @@ class DeveloperController extends Controller
      */
     public function edit(Developer $developer)
     {
-        return view('admin.developers.edit');
+        return view('admin.developers.edit',compact('developer'));
     }
 
     /**
@@ -95,7 +97,9 @@ class DeveloperController extends Controller
      */
     public function destroy(Developer $developer)
     {
+        $deleteDeveloper = $developer->id;
         $developer->delete();
-        return to_route('admin.developers.index');
+
+        return to_route('admin.developers.index')->with('message', "Developer $deleteDeveloper deleted");
     }
 }

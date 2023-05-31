@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page.title')
-    {{ $developer->name}}
+    {{ $developer->name }}
 @endsection
 
 @section('page.main')
@@ -10,10 +10,12 @@
         <div class="d-flex  gap-3 my-5">
             <div class="mt-3">
                 <h1>{{ $developer->name }}</h1>
-                    <ul>
-                        @foreach ( $developer->games as $game)
-                            <li><a href="{{route('admin.games.show', $game->id)}}">{{$game->title}}</a></li>
-                        @endforeach
+                <ul class="list-unstyled">
+                    @foreach ($developer->games as $game)
+                        <li>
+                            <a href="{{ route('admin.games.show', $game) }}" >{{ $game->title }}</a>
+                        </li>
+                    @endforeach
             </div>
         </div>
     </div>
