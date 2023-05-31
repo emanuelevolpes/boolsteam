@@ -30,6 +30,7 @@ class GameSeeder extends Seeder
 
             $developer = Developer::inRandomOrder()->first();
             $publisher = Publisher::inRandomOrder()->first();
+            
             // MAIN
             $new_game->title = $faker->sentence(5); // Genera una scritta di 5 parole
             $new_game->image = $faker->imageUrl(480, 640, 'games'); // URL immagine random con dimensioni 480x640
@@ -46,6 +47,7 @@ class GameSeeder extends Seeder
             $new_game->score = $faker->randomFloat(3, 1, 100); //Generates a random float
             $new_game->is_available = $faker->boolean();
             $new_game->downloads = $faker->numberBetween(0, 65535); //Generate a random number between 0 and 65535
+            $new_game->discount = $faker->numberBetween(0,75);
 
             // TAGS
             $new_game->supported_languages = Arr::join($faker->randomElements(['Italian', 'English', 'French', 'Spanish'], $faker->numberBetween(1, 4)), ', '); // Genera una strina da un array lunga un numero random tra 1 e 4

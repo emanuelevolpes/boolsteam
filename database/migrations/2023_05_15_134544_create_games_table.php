@@ -31,6 +31,7 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->unsignedMediumInteger('downloads');
             $table->text('supported_languages');
+            $table->integer('discount');
             
             //REQUIREMENTS
             $table->string('minimum_operating_system');
