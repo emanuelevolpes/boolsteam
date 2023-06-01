@@ -10,7 +10,7 @@ class Game extends Model
 {
     use HasFactory;
   
-    protected $guarded = ['tags','genres','pegis'];
+    protected $guarded = ['tags','genres','pegis','image'];
 
 
     public function publisher(){
@@ -31,5 +31,10 @@ class Game extends Model
     }
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+    public function image(): Attribute{
+        return Attribute::make(
+            get: fn(string|null $value) => $value ? asset('storage/'. $value) : null,
+        );
     }
 }

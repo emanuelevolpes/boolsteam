@@ -26,7 +26,7 @@ class UpdateGameRequest extends FormRequest
         return [
             //MAIN
             'title' => 'required|string|max:100',
-            'image' => 'nullable|url|ends_with:png,jpg,webp',
+            'image' => 'nullable|image|max:4096',
             'description' => 'nullable',
             'publisher_id' => 'nullable|exists:publishers,id',
             'developer_id' => 'nullable|exists:developers,id',
