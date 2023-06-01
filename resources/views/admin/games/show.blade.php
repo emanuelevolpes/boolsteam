@@ -9,7 +9,7 @@
         <a href="{{ route('admin.games.index') }}" class="btn btn-primary">Games list</a>
         <div class="d-flex  gap-3 my-5">
             <div>
-                <img class="img-fluid" src="{{ asset('storage/' . $game->image)}}" alt="{{ $game->title }}">
+                <img class="img-fluid" src="{{ $game->image }}" alt="{{ $game->title }}">
             </div>
             <div class="mt-3">
                 <ul class="list-unstyled">
@@ -28,16 +28,18 @@
                 <ul class="card-body list-unstyled">
                     <li>
                         <h5>Publisher</h5>
-                        {{ $game->publisher }}
+                        {{ $game->publisher->name }}
                     </li>
                     <li class="my-3">
                         <h5>Developer</h5>
-                        {{ $game->developer->name}}
-                        </li>
-                    <li class="my-3">
-                        <h5>Genres</h5>
-                        {{ $game->genres }}
+                        {{ $game->developer->name }}
                     </li>
+                    <h5>Genres</h5>
+                    @foreach ($game->genres as $genre)
+                        <li class="my-3">   
+                            {{ $genre->name }}
+                        </li>
+                    @endforeach
                     <li class="my-3">
                         <h5>Platforms</h5>
                         {{ $game->platform }}
@@ -52,11 +54,11 @@
                 <h2 class="card-title ps-3">Commercial</h2>
                 <ul class="card-body list-unstyled">
                     <li>
-                        <h5>Region</h5> 
+                        <h5>Region</h5>
                         {{ $game->region }}
                     </li>
                     <li class="my-3">
-                        <h5>Sales</h5> 
+                        <h5>Sales</h5>
                         {{ $game->sales }}
                     </li>
                     <li class="my-3">
@@ -64,7 +66,7 @@
                         {{ $game->price }} €
                     </li>
                     <li class="my-3">
-                        <h5>Score</h5> 
+                        <h5>Score</h5>
                         {{ $game->score }}
                     </li>
                     <li class="my-3">
@@ -72,7 +74,7 @@
                         {{ $game->is_available == '1' ? 'Yes' : 'No' }}
                     </li>
                     <li>
-                        <h5>Downloads</h5> 
+                        <h5>Downloads</h5>
                         {{ $game->downloads }}
                     </li>
                 </ul>
@@ -80,40 +82,22 @@
             <div class="card p-3">
                 <h2 class="card-title ps-3">Pegi</h2>
                 <ul class="card-body list-unstyled">
-                    @if ($game->violence == 1)
-                       <li class="my-2 tags pegi">Violence</li> 
-                    @endif
-                    @if ($game->bad_language == 1)
-                       <li class="my-2 tags pegi">Bad Language</li> 
-                    @endif
-                    @if ($game->fear == 1)
-                       <li class="my-2 tags pegi">Fear</li> 
-                    @endif
-                    @if ($game->gambling == 1)
-                        <li class="my-2 tags pegi">Gambling</li>
-                    @endif
-                    @if ($game->sex == 1)
-                        <li class="my-2 tags pegi">Sex</li>
-                    @endif
-                    @if ($game->drugs == 1)
-                        <li class="my-2 tags pegi">Drugs</li>
-                    @endif
-                    @if ($game->discriminations == 1)
-                        <li class="my-2 tags pegi">Discriminations</li>
-                    @endif
+                    @foreach ($game->pegis as $pegi)
+                        <li>{{ $pegi->name }}</li>
+                    @endforeach
                 </ul>
             </div>
             <div class="card p-3">
                 <h2 class="card-title ps-3">Tags</h2>
                 <ul class="card-body list-unstyled">
                     @if ($game->single_player == 1)
-                       <li class="my-2 tags typo">Single Player</li> 
+                        <li class="my-2 tags typo">Single Player</li>
                     @endif
                     @if ($game->multiplayer == 1)
-                       <li class="my-2 tags typo">Multiplayer</li> 
+                        <li class="my-2 tags typo">Multiplayer</li>
                     @endif
                     @if ($game->online_pvp == 1)
-                       <li class="my-2 tags typo">Online PVP</li> 
+                        <li class="my-2 tags typo">Online PVP</li>
                     @endif
                     @if ($game->online_coop == 1)
                         <li class="my-2 tags typo">Online COOP</li>
@@ -124,7 +108,7 @@
                     @endif
 
                     <hr>
-                    developer: {{$game->developer}}
+                    developer: {{ $game->developer }}
                     <hr>
 
                 </ul>
